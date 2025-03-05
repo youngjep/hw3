@@ -67,7 +67,12 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
-
+template <typename T>
+struct isEven {
+    bool operator()(const T& v1) {
+        return v1 % 2 == 0;
+    }
+};
 
 
 
@@ -81,14 +86,28 @@ int main(int argc, char* argv[])
     // -----------------------------------------------
     // Feel free to update any code below this point
     // -----------------------------------------------
-    Node* head = readList(argv[1]);
-    cout << "Original list: ";
+    //Node* head = readList(argv[1]);
+    //cout << "Original list: ";
+    // original: 8 9 12 19 6 8
+    //print(head);
+
+    /*head = llfilter(head, isEven<int>());
     print(head);
+    dealloc(head);  */
 
     // Test out your linked list code
 
 
+    Node* list = readList(argv[1]);
+	Node* small = nullptr;//(Node*) &list; // set to a non-null address
+	Node* large = nullptr;//(Node*) &list; // set to a non-null address
+	llpivot(list, small, large, 5);
 
+    print(small);
+    print(large);
+
+    dealloc(small);
+    dealloc(large);
     
     return 0;
 
